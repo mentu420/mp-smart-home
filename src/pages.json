@@ -63,6 +63,10 @@
       }
     },
     {
+      "path": "pages/login/account-login",
+      "type": "page"
+    },
+    {
       "path": "pages/my/index",
       "type": "page",
       "layout": "tabbar",

@@ -1,4 +1,4 @@
-const paltName = `${import.meta.env.VITE_APP_APP_TAG}_`
+const paltName = `${import.meta.env.VITE_APP_TITLE}_`
 
 const platKey = (key) => paltName + key
 const isJSON = (value) => /^{(.?)+}$/.test(value) || /^\[(.?)+\]$/.test(value)

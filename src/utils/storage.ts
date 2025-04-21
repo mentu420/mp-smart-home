@@ -1,12 +1,12 @@
 interface ImportMetaEnv {
-  VITE_APP_APP_TAG: string
+  VITE_APP_TITLE: string
 }
 
 interface ImportMeta {
   env: ImportMetaEnv
 }
 
-const paltName = `${import.meta.env.VITE_APP_APP_TAG}_`
+const paltName = `${import.meta.env.VITE_APP_TITLE}_`
 
 const platKey = (key: string): string => paltName + key
 const isJSON = (value: string): boolean => /^{(.?)+}$/.test(value) || /^\[(.?)+\]$/.test(value)

@@ -76,7 +76,10 @@ const httpInterceptor = {
     // 3. 添加 token 请求头标识
     const token = getStorage(import.meta.env.VITE_APP_STORAGE_TOKEN)
     if (token) {
-      options.header.Authorization = token?.acessToken
+      options.header = {
+        ...(options.header || {}),
+        Authorization: token?.acessToken,
+      }
     }
   },
 }

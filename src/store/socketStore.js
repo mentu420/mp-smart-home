@@ -15,9 +15,13 @@ const getLogStyle = (color) => {
 
 const getTimeStamp = () => new Date().valueOf()
 
+const { onLine } = storeToRefs(userStore())
+
+console.log('onLine', onLine)
+
 export default defineStore('socketStore', () => {
   const { sceneList } = storeToRefs(smartStore())
-  const { onLine } = storeToRefs(userStore())
+
   let heartTimer = null
   let mqClient = null
   const heartDuration = 10 * 1000
@@ -34,14 +38,6 @@ export default defineStore('socketStore', () => {
   const deviceOnlineTopic = ref('') // 设备/网关在线主题
   const isDisConnect = ref(false) // 是否主动断开链接
   const showLog = ref(getStorage(import.meta.env.VITE_APP_DEVELOPER) ?? false)
-
-  watch(
-    () => onLine.value,
-    (val) => {
-      if (!val) disReconnect()
-    },
-    { deep: true, immediate: true },
-  )
 
   const useSetShowLog = (value) => {
     console.log('useSetShowLog', value)
@@ -335,6 +331,19 @@ export default defineStore('socketStore', () => {
     setSceneLoading(id, true)
     useMqttPublish(SENCE, message)
   }
+
+  watch(
+    () => onLine.value,
+    (val) => {
+      console.log('onLine', onLine.value)
+      if (!val) {
+        disReconnect()
+      } else {
+        init()
+      }
+    },
+    { deep: true, immediate: true },
+  )
 
   return { mqttScenePublish, mqttDevicePublish, useSetShowLog, disReconnect, waitConnected, init }
 })

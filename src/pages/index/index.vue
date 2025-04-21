@@ -28,6 +28,9 @@
       模板分支是：
       <text class="text-green-500">tabbar</text>
     </view>
+    <view>
+      <text @click="handleLogin">login</text>
+    </view>
   </view>
 </template>
 
@@ -50,6 +53,12 @@ onLoad(() => {
   console.log(author)
   console.log(TestEnum.A)
 })
+
+function handleLogin() {
+  uni.navigateTo({
+    url: '/pages/login/account-login',
+  })
+}
 </script>
 
 <style>

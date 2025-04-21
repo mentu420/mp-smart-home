@@ -1,4 +1,3 @@
-import localforage from 'localforage'
 import { defineStore } from 'pinia'
 import { computed, reactive, ref } from 'vue'
 
@@ -6,7 +5,7 @@ import { setUserConfig, getUserConfig } from '@/apis/commonApi'
 import { mergingStep } from '@/utils/common.js'
 import { getStorage, removeStorage, setStorage } from '@/utils/storage'
 
-const storeName = 'userStore'
+const storeName = 'useUserStore'
 
 export default defineStore(storeName, () => {
   // 统一token处理
@@ -22,11 +21,6 @@ export default defineStore(storeName, () => {
   }
   const useRemoveToken = () => {
     removeStorage(VITE_APP_STORAGE_TOKEN)
-  }
-
-  const init = async () => {
-    const storeRes = JSON.parse(await localforage.getItem(storeName))
-    userInfo.value = storeRes?.userInfo
   }
 
   const setUserInfo = (palyload) => (userInfo.value = { ...userInfo.value, ...palyload })
@@ -46,7 +40,6 @@ export default defineStore(storeName, () => {
     onLine.value = false
     useRemoveToken()
   }
-
   return {
     onLine,
     userInfo,
@@ -56,6 +49,5 @@ export default defineStore(storeName, () => {
     useSetToken,
     useRemoveToken,
     reset,
-    init,
   }
 })

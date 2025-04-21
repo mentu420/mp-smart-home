@@ -1,8 +1,8 @@
 /*
  * @Author: 菲鸽
  * @Date: 2024-03-28 19:13:55
- * @Last Modified by: 菲鸽
- * @Last Modified time: 2024-03-28 19:24:55
+ * @Last Modified by: mikey.zhaopeng
+ * @Last Modified time: 2025-04-14 14:52:20
  */
 export const platform = __UNI_PLATFORM__
 export const isH5 = __UNI_PLATFORM__ === 'h5'
